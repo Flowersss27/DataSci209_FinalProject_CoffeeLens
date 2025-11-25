@@ -346,15 +346,22 @@
 
         <!-- RIGHT: viz -->
         <div class="viz-shell">
-            <div class="viz-legend">
-                <div class="viz-legend-title">Head color → Stress level</div>
-                <div class="viz-legend-bar"></div>
-                <div class="viz-legend-ticks">
-                    <span>Low (0%)</span>
-                    <span>Mid (50%)</span>
-                    <span>High (100%)</span>
-                </div>
-            </div>
+			<div class="viz-legend">
+			    <div class="viz-legend-title">Head color → Stress level</div>
+			    <div class="viz-legend-bar"></div>
+			    <div class="viz-legend-ticks">
+			        <span>Low (0%)</span>
+			        <span>Mid (50%)</span>
+			        <span>High (100%)</span>
+			    </div>
+			</div>
+
+			<div id="stressBreakdown" class="breakdown-card vertical-rect">
+			    <div class="breakdown-title">What’s driving your stress right now?</div>
+			    <div id="stressSummaryLine" style="margin-bottom:6px;"></div>
+			    <div id="factorList" class="breakdown-chips"></div>
+			</div>
+            
 			
                 <div id="stressBreakdown" class="breakdown-card">
                     <div class="breakdown-title">What’s driving your stress right now?</div>
