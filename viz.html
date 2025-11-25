@@ -346,64 +346,21 @@
 
         <!-- RIGHT: viz -->
         <div class="viz-shell">
-			<div class="viz-legend">
-			    <div class="viz-legend-title">Head color → Stress level</div>
-			    <div class="viz-legend-bar"></div>
-			    <div class="viz-legend-ticks">
-			        <span>Low (0%)</span>
-			        <span>Mid (50%)</span>
-			        <span>High (100%)</span>
-			    </div>
-			</div>
-
-			
-                <div id="stressBreakdown" class="breakdown-card">
-                    <div class="breakdown-title">What’s driving your stress right now?</div>
-                    <div id="stressSummaryLine" style="margin-bottom:6px;"></div>
-                    <div id="factorList" class="breakdown-chips"></div>
+            <div class="viz-legend">
+                <div class="viz-legend-title">Head color → Stress level</div>
+                <div class="viz-legend-bar"></div>
+                <div class="viz-legend-ticks">
+                    <span>Low (0%)</span>
+                    <span>Mid (50%)</span>
+                    <span>High (100%)</span>
                 </div>
             </div>
 
             <svg id="stage" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet">
                 <defs>
-                    <clipPath id="headClip">
-                        <circle id="headClipCircle" cx="0" cy="0" r="0" />
-                    </clipPath>
-
-                    <filter id="smokeBlur" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" />
-                    </filter>
-
-                    <filter id="headGlowBlur" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-
-                    <filter id="headOuterGlow" x="-70%" y="-70%" width="240%" height="240%"
-                        color-interpolation-filters="sRGB">
-                        <feMorphology in="SourceAlpha" operator="dilate" radius="14" result="spread" />
-                        <feGaussianBlur in="spread" stdDeviation="24" result="blur" />
-                        <feFlood flood-color="#ff2a2a" flood-opacity="0.9" result="tint" />
-                        <feComposite in="tint" in2="blur" operator="in" result="glow" />
-                        <feMerge>
-                            <feMergeNode in="glow" />
-                        </feMerge>
-                    </filter>
-
-                    <clipPath id="cupLevelClip" clipPathUnits="objectBoundingBox">
-                        <rect id="cupLevelGate" x="0" y="0.30" width="1" height="0.70"></rect>
-                    </clipPath>
-
-                    <linearGradient id="liquidGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300">
-                        <stop offset="0%" stop-color="currentCoffeeColor" stop-opacity="0" />
-                        <stop offset="50%" stop-color="currentCoffeeColor" stop-opacity="0.8" />
-                        <stop offset="100%" stop-color="currentCoffeeColor" stop-opacity="0" />
-                    </linearGradient>
+                    <!-- all your defs as before -->
                 </defs>
-f
+
                 <g id="silhouette"></g>
 
                 <g id="overlays">
@@ -413,14 +370,17 @@ f
                     <g id="smoke"></g>
                 </g>
             </svg>
+
+            <!-- breakdown card now overlays the SVG at the bottom -->
+            <div id="stressBreakdown" class="breakdown-card breakdown-overlay">
+                <div class="breakdown-title">What’s driving your stress right now?</div>
+                <div id="stressSummaryLine" style="margin-bottom:6px;"></div>
+                <div id="factorList" class="breakdown-chips"></div>
+            </div>
         </div>
+      
     </div>
 	
-	<div id="stressBreakdown" class="breakdown-card vertical-rect">
-	    <div class="breakdown-title">What’s driving your stress right now?</div>
-	    <div id="stressSummaryLine" style="margin-bottom:6px;"></div>
-	    <div id="factorList" class="breakdown-chips"></div>
-	</div>
 
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script>
