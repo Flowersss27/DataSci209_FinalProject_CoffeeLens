@@ -567,32 +567,33 @@
             ['caffeine', 'sleep', 'activity'].forEach(id => {
                 el[id]?.addEventListener('input', updateEverything);
             });
-
-			el.age?.addEventListener('input', () => {
-				let v = el.age.value;
-				
-			    // Allow empty field while typing (do NOT clamp here)
-			    if (v === '') return;
-
-				// Allow partial numbers like "1", "15", "100", etc.
-			    const n = parseInt(v, 10);
-			    if (Number.isNaN(n)) return;
-			    updateEverything();
-			});
-
-			el.age?.addEventListener('blur', () => {
+		
+			// Helper to clamp age and trigger update
+			function clampAndUpdateAge() {
 			    let v = parseInt(el.age.value, 10);
 			
-			    // If it's not a number at all, you can choose a default:
+			    // If not a number, fall back to minimum age
 			    if (Number.isNaN(v)) {
-			        v = 14;            // or 35 if you prefer your original default
+			        v = 14;
 			    }
 			
-			    if (v < 14) v = 14;    // e.g. 1 → 14
-			    if (v > 100) v = 100;  // e.g. 200 → 100
+			    if (v < 14) v = 14;     // e.g. 1 -> 14
+			    if (v > 100) v = 100;   // e.g. 200 -> 100
 			
 			    el.age.value = v;
 			    updateEverything();
+			}
+			
+			// When user leaves the field → clamp
+			el.age?.addEventListener('blur', clampAndUpdateAge);
+			
+			// Optional: when user hits Enter inside the field → clamp
+			el.age?.addEventListener('keydown', (e) => {
+			    if (e.key === 'Enter') {
+			        e.preventDefault();
+			        clampAndUpdateAge();
+			        el.age.blur(); // optional: move focus out
+			    }
 			});
 
             el.sleep?.addEventListener('input', () => {
