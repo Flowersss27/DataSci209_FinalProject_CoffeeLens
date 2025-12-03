@@ -582,6 +582,21 @@
 			    updateEverything();
 			});
 
+			el.age?.addEventListener('blur', () => {
+			    let v = parseInt(el.age.value, 10);
+			
+			    // If it's not a number at all, you can choose a default:
+			    if (Number.isNaN(v)) {
+			        v = 14;            // or 35 if you prefer your original default
+			    }
+			
+			    if (v < 14) v = 14;    // e.g. 1 → 14
+			    if (v > 100) v = 100;  // e.g. 200 → 100
+			
+			    el.age.value = v;
+			    updateEverything();
+			});
+
             el.sleep?.addEventListener('input', () => {
                     sleepLabel();
                     updateEverything();
