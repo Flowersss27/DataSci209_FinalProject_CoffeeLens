@@ -564,10 +564,23 @@
             });
 
         // Attach proper events per control
-            ['age', 'caffeine', 'sleep', 'activity'].forEach(id => {
+            ['caffeine', 'sleep', 'activity'].forEach(id => {
                 el[id]?.addEventListener('input', updateEverything);
             });
 
+			el.age?.addEventListener('input', () => {
+				let v = parseInt(el.age.value, 10);
+			    // allow empty while typing
+			    if (Number.isNaN(v)) {
+			        return;
+			    }
+			
+			    if (v < 14) v = 14;
+			    if (v > 100) v = 100;
+			
+			    el.age.value = v;
+			    updateEverything();
+			});
 
             el.sleep?.addEventListener('input', () => {
                     sleepLabel();
