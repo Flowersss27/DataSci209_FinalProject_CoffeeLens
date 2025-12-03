@@ -45,11 +45,9 @@
         .intro-card {
             width: 100%;              /* new */
             box-sizing: border-box;   /* new */
-            background size: 24px 24px;
+            background-size: 24px 24px;
 			background-color: #faf6f1;
 			background-image: radial-gradient(circle at 2px 2px,
-                                      rgba(184, 115, 51, 0.22) 2px,
-                                      transparent 0);radial-gradient(circle at 2px 2px,
                                       rgba(184, 115, 51, 0.22) 2px,
                                       transparent 0);
             border-radius: 12px;
@@ -296,9 +294,47 @@
 		    left: 10px;
 			width: 200px;
 		    max-width: 285px;
-			border-radius: 12px;     
-			z-index: 2;		
-		    						
+			border-radius: 12px;
+			z-index: 2;
+		}
+
+		.info-btn {
+		    display: inline-block;
+		    width: 14px;
+		    height: 14px;
+		    background: #e5e7eb;
+		    border-radius: 50%;
+		    text-align: center;
+		    line-height: 14px;
+		    font-size: 10px;
+		    color: #6b7280;
+		    cursor: help;
+		    margin-left: 6px;
+		    position: relative;
+		}
+
+		.info-btn:hover {
+		    background:#d1d5db;
+		}
+
+		.info-btn .tooltip {
+		    visibility: hidden;
+		    position: absolute;
+		    left: 100%;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    margin-left: 8px;
+		    width: 200px;
+		    background: #1f2937;
+		    color: #fff;
+		    padding: 8px;
+		    border-radius: 6px;
+		    font-size: 11px;
+		    z-index: 100;
+		}
+
+		.info-btn:hover .tooltip {
+		    visibility: visible;
 		}
 	</style>
 		
@@ -347,18 +383,18 @@
                 <div class="stress-banner-title">Predicted stress</div>
                 <div id="stressVal" class="stress-number">--%</div>
             </div>
-            <label>Country</label>
+            <label>Country<span class="info-btn">i<span class="tooltip">Select a country to set the regional stress level. Predictions adjust from country-specific averages.</span></span></label>
             <select id="country"></select>
 
             <div class="row">
                 <div>
-                    <label>Age</label>
-                    <input id="age" type="number" min="10" max="100" step="1" value="35" />
+                    <label>Age<span class="info-btn">i<span class="tooltip">Select your age to find your predicted stress level. Your stress might not change based on age alone.</span></span></label>
+                    <input id="age" type="number" min="14" max="100" step="1" value="35" />
                 </div>
             </div>
 
             <div>
-                <label>Gender</label>
+                <label>Gender<span class="info-btn">i<span class="tooltip">Select your gender to find your predicted stress level. Stress predictions may vary slightly based on gender.</span></span></label>
                 <select id="gender">
                     <option value="male" selected>Male</option>
                     <option value="female">Female</option>
@@ -366,32 +402,32 @@
             </div>
 
             <label>
-                Caffeine (mg)
+                Caffeine (mg)<span class="info-btn">i<span class="tooltip">Enter your daily caffeine intake in milligrams.</span></span>
                 <span id="caffeineVal" style="float:right;color:#6b7280;">200 mg</span>
             </label>
             <input id="caffeine" type="range" min="0" max="800" step="10" value="200" />
 
             <label>
-                Sleep (hours)
+                Sleep (hours)<span class="info-btn">i<span class="tooltip">Hours of sleep per night. </span></span>
                 <span id="sleepVal" style="float:right;color:#6b7280;">7 hrs</span>
             </label>
             <input id="sleep" type="range" min="0" max="10" step="0.1" value="7" />
 
-            <div class="row">
-                <div>
-                    <label>Physical Activity (hrs/day)</label>
-                    <input id="activity" type="number" min="0" max="10" step="0.1" value="1" />
-                </div>
-                <div>
-                    <label>Smoker</label>
-                    <select id="smoking">
-                        <option value="N" selected>No</option>
-                        <option value="Y">Yes</option>
-                    </select>
-                </div>
+            
+            <div>
+                <label>Physical Activity (hrs/day)<span class="info-btn">i<span class="tooltip">Hours of physical activity per day. </span></span></label>
+                <input id="activity" type="number" min="0" max="10" step="0.1" value="1" />
             </div>
+            <div>
+                <label>Smoker<span class="info-btn">i<span class="tooltip">Smoking status.</span></span></label>
+                <select id="smoking">
+                    <option value="N" selected>No</option>
+                    <option value="Y">Yes</option>
+                </select>
+            </div>
+            
 
-            <label>Alcohol Consumption</label>
+            <label>Alcohol Consumption<span class="info-btn">i<span class="tooltip">Whether you consume alcohol regularly.</span></span></label>
             <select id="alcohol">
                 <option value="N" selected>No</option>
                 <option value="Y">Yes</option>
