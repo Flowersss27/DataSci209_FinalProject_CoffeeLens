@@ -569,16 +569,14 @@
             });
 
 			el.age?.addEventListener('input', () => {
-				let v = parseInt(el.age.value, 10);
-			    // allow empty while typing
-			    if (Number.isNaN(v)) {
-			        return;
-			    }
-			
-			    if (v < 14) v = 14;
-			    if (v > 100) v = 100;
-			
-			    el.age.value = v;
+				let v = el.age.value;
+				
+			    // Allow empty field while typing (do NOT clamp here)
+			    if (v === '') return;
+
+				// Allow partial numbers like "1", "15", "100", etc.
+			    const n = parseInt(v, 10);
+			    if (Number.isNaN(n)) return;
 			    updateEverything();
 			});
 
